@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState , useEffect } from "react";
 import { resgisteradmin } from '../Services/api';
+import './Signup.css'
 
 const initialValue = {
   username: "",
@@ -17,7 +18,8 @@ const Signup = () => {
     setUser({ ...userdata, [e.target.name]: e.target.value });
   };
 
-  const onSubmit = async () => {
+  const onSubmit = async (e) => {
+    e.preventDefault();
     console.log(userdata);
     let response = await resgisteradmin(userdata)
     console.log(response)
@@ -28,50 +30,50 @@ const Signup = () => {
     }
   }
   return (
-        <div>
-        <form>
-          <div className="user-box">
-          <label>UserName : </label>
-            <input
-              type="text"
-              onChange={(e) => onValueChange(e)}
-              name="username"
-            />
+        <div className='main'>
+          <div className='form-admi'>
+            <form>
+              <h3>Sign up</h3>
+                <div className="user-box">
+                <label>UserName : </label>
+                  <input
+                    type="text"
+                    onChange={(e) => onValueChange(e)}
+                    name="username"
+                  />
+                </div>
+                <div className="user-box">
+                <label>Phone No : </label>
+                  <input
+                    type="tel"
+                    onChange={(e) => onValueChange(e)}
+                    name="phoneno"
+                  />   
+                </div>
+                <div className="user-box">
+                <label>EmailID : </label>
+                  <input
+                    type="email"
+                    onChange={(e) => onValueChange(e)}
+                    name="email"
+                  />
+                </div>
+                <div className="user-box">
+                <label>Password : </label>
+                  <input
+                    type="password"
+                    onChange={(e) => onValueChange(e)}
+                    name="password"
+                  />
+                </div>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <button onClick={(e) => onSubmit(e)}> Register</button>
+              </form>
           </div>
-          <div className="user-box">
-          <label>Phone No:</label>
-            <input
-              type="tel"
-              onChange={(e) => onValueChange(e)}
-              name="phoneno"
-            />   
-          </div>
-          <div className="user-box">
-          <label>EmailID : </label>
-            <input
-              type="email"
-              onChange={(e) => onValueChange(e)}
-              name="email"
-            />
-          </div>
-          <div className="user-box">
-          <label>Password : </label>
-            <input
-              type="password"
-              onChange={(e) => onValueChange(e)}
-              name="password"
-            />
-          </div>
-         
-           
-          
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <button onClick={() => onSubmit()}> Register</button>
-        </form>
-      </div>
+        </div>
     )
   }
 
